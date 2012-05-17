@@ -119,7 +119,7 @@ module RailsAdmin
       end
 
       def properties
-        columns = model.columns.reject {|c| DISABLED_COLUMN_TYPES.include?(c.type.to_sym) }
+        columns = model.columns.reject {|c| c.type.blank? || DISABLED_COLUMN_TYPES.include?(c.type.to_sym) }
         columns.map do |property|
           {
             :name => property.name.to_sym,
